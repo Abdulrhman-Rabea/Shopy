@@ -1,0 +1,57 @@
+body {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 30px;
+	padding-right: 50px;
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+}
+
+nav ul li {
+	margin-left: 20px;
+}
+
+nav a {
+	text-decoration: none;
+	color: black;
+}
+
+nav p {
+	font-weight: bold;
+	font-size: 20px;
+}
+footer ul li {
+	margin: 10px;
+	list-style: none;
+}
+footer {
+	padding: 20px;
+	background-color: black;
+	color: rgb(255, 255, 255);
+	display: flex;
+	width: 100%;
+}
+.MainSection {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	margin-bottom: 50px;
+}
+.cardPic {
+	width: 50%;
+}
+.LoginForm {
+	width: 50%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
