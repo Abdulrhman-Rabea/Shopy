@@ -16,7 +16,7 @@ nav ul li {
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: rgb(53, 35, 189);
  }
 
  nav p{
@@ -25,16 +25,14 @@ nav a {
  }
  footer ul li{
     margin: 10px;
-  list-style: none;
-
+    list-style: none;
  }
  footer{
-    padding: 20px;
-    display: flex;
-   justify-content: space-between; 
    background: #000000;
    color: white;
-   padding-bottom: 100px;
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);  
+    gap: 20px;
   
  }
  .display{
@@ -72,20 +70,50 @@ nav a {
     border-color: white;
  }
 
-
-
 footer ul{
    padding: 10px !important;
 }
  footer div a{
    padding-left: 15px;
  }
-footer span{
+footer span {
    display: flex;
    flex-direction: column;
 }
-.apps{
+.apps, #signup{
     display: flex;
    flex-direction: row;
 }
-  
+
+
+    @media (min-width: 770px) and (max-width:960px) {
+        footer {
+            grid-template-columns: repeat(4, 1fr); 
+        }
+    }
+
+    @media (max-width: 768px) {
+        footer {
+            grid-template-columns: repeat(3, 1fr); 
+        }
+    }
+
+    
+    @media (max-width: 500px) {
+        footer {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        #img{
+          display: none;
+        }
+         .formdiv{
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        text-align: center;
+        align-items: center;
+        }   
+      }
+
+
+     
