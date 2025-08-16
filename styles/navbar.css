@@ -90,7 +90,8 @@ nav .logo img {
     align-items: center;
 }
 
-.search-box input {
+.search-box input,
+.sideBar input {
     width: 200px;
     border: 1px solid #f8f6f6;
     border-radius: 4px;
@@ -98,6 +99,7 @@ nav .logo img {
     font-size: 12px;
     background-color: #f8f7f7;
     padding: 4px 8px;
+    margin-left: 7%;
 }
 
 .search-box i {
@@ -108,7 +110,6 @@ nav .logo img {
     cursor: pointer;
 }
 
-/* مظهر مفرغ للأيقونات */
 .outlined {
     color: transparent;
     -webkit-text-stroke: 1px black;

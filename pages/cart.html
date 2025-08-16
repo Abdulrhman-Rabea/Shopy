@@ -9,12 +9,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/solid.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/regular.min.css" />
+    <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/cart.css">
+
 </head>
 
 <body>
-    <!-- هنا هيتم تحميل الـ Navbar -->
-    <div id="navbar"></div>
+
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/SiteLogoClear2.png" alt="Logo">
+        </div>
+
+        <!-- Nav links -->
+        <ul class="navLinks">
+            <li class="hideOnMobile"><a href="home.html">Home</a></li>
+            <li class="hideOnMobile"><a href="contact.html">Contact</a></li>
+            <li class="hideOnMobile"><a href="about.html">About</a></li>
+            <li class="hideOnMobile"><a href="sign_up.html">Sign Up</a></li>
+        </ul>
+
+        <!-- Icons -->
+        <div class="navIcons">
+            <div class="search-box">
+                <input type="text" placeholder="What are you looking for?">
+                <i onclick="openSideBar()" class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <a href="wish_list.html"><i class="fa-regular fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping outlined"></i></a>
+            <a href="account.html"><i class="fa-regular fa-user"></i></a>
+            <span class="menu-button"><a href="#" onclick="openSideBar()"><i class="fa-solid fa-bars"></i></a></span>
+        </div>
+
+        <!-- Sidebar -->
+        <ul class="sideBar">
+            <input type="text" placeholder="What are you looking for?">
+            <li onclick="closeSideBar()"><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sign_up.html">Sign Up</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <script src="../scripts/navbar.js"></script>
 
     <section class="container">
         <!-- Breadcrumbs -->
