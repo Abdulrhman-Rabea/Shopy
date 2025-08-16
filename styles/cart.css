@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    padding-bottom: 5%;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: #555;
+}
+
+.container {
+    padding: 5% 10%;
+}
+
+.products_container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* مسافة بين البوكسات */
+}
+
+.box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 4%;
+    box-shadow: 0 2px 10px #e7e6e6;
+}
+
+.box span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* أول عمود شمال */
+.box span:first-child {
+    justify-content: flex-start;
+    gap: 10px;
+    /* مسافة بين الصورة والنص */
+
+}
+
+/* آخر عمود يمين */
+.box span:last-child {
+    justify-content: flex-end;
+}
+
+/* الأعمدة اللي في النص */
+.box span:not(:first-child):not(:last-child) {
+    justify-content: center;
+}
+
+
+.box span:first-child .title {
+    display: inline-block;
+    /* يخلي النص ثابت */
+
+}
+
+.quantity input[type=number] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #9b9b9b;
+    color: #000000;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+}
+
+button,
+#coupon_input {
+    height: 40px;
+    width: 160px;
+    background-color: transparent;
+    border: 1px solid #9b9b9b;
+    border-radius: 3px;
+}
+
+#coupon_input {
+    width: 200px;
+    padding-left: 2%;
+}
+
+#apply_coupon_btn,
+#process_to_checkout {
+    background-color: crimson;
+    color: white;
+    border: none;
+}
+
+#cart_total {
+    border: 1px solid #000000;
+    border-radius: 3px;
+    width: 370px;
+    padding: 2% 2%;
+    font-weight: 500;
+    font-size: large;
+
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+#apply_coupon_btn {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
+@media (max-width: 800px) {
+    .cart-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    #cart_total {
+        margin-top: 10px;
+        width: 100%;
+        padding: 4% 4%;
+    }
+
+    .box {
+        font-size: 14px;
+    }
+
+    .quantity input[type=number] {
+        width: 40px;
+    }
+}
+
+#checkout div {
+    display: flex;
+    justify-content: space-between;
+    font-size: medium;
+    font-weight: 200;
+    padding: 3% 0;
+}
+
+#process_to_checkout {
+    display: block;
+    margin: 0 auto 0;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+}
+
+.remove-item {
+    display: none !important;
+    /* force hide */
+}
+
+.box:hover .remove-item {
+    display: block !important;
+}
+
+.remove-item:hover {
+    color: darkred !important;
+    cursor: pointer;
+}
+

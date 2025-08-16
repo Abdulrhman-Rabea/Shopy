@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/solid.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/regular.min.css" />
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/cart.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/SiteLogoClear2.png" alt="Logo">
+        </div>
+
+        <!-- Nav links -->
+        <ul class="navLinks">
+            <li class="hideOnMobile"><a href="home.html">Home</a></li>
+            <li class="hideOnMobile"><a href="contact.html">Contact</a></li>
+            <li class="hideOnMobile"><a href="about.html">About</a></li>
+            <li class="hideOnMobile"><a href="sign_up.html">Sign Up</a></li>
+        </ul>
+
+        <!-- Icons -->
+        <div class="navIcons">
+            <div class="search-box">
+                <input type="text" placeholder="What are you looking for?">
+                <i onclick="openSideBar()" class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <a href="wish_list.html"><i class="fa-regular fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping outlined"></i></a>
+            <a href="account.html"><i class="fa-regular fa-user"></i></a>
+            <span class="menu-button"><a href="#" onclick="openSideBar()"><i class="fa-solid fa-bars"></i></a></span>
+        </div>
+
+        <!-- Sidebar -->
+        <ul class="sideBar">
+            <input type="text" placeholder="What are you looking for?">
+            <li onclick="closeSideBar()"><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sign_up.html">Sign Up</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <script src="../scripts/navbar.js"></script>
+
+    <section class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumb">
+            <a href="home.html">Home</a>
+            <span>/</span>
+            <a href="cart.html">Cart</a>
+        </div>
+        <!-- products -->
+        <div class="products_container">
+            <div class="box">
+                <span>Product</span>
+                <span>Price</span>
+                <span>Quantity</span>
+                <span>Subtotal</span>
+            </div>
+            <div class="box">
+                <span class="product-image">
+                    <i class="fa-solid fa-circle-xmark fa-xs remove-item" style="color: #dc143c;"></i>
+                    <img src="../assets/images/Electronics1.jpeg" alt="item" height="40px" width="40px">
+                    <span class="title">LSCD Monitor</span>
+                </span>
+                <span class="price">650$</span>
+                <span class="quantity">
+                    <input id="quantity" type="number" min="1" max="100" value="1">
+                </span>
+                <span class="subtotal">650$</span>
+            </div>
+
+
+
+
+            <div class="box">
+                <span>
+                    <i class="fa-solid fa-circle-xmark fa-xs remove-item" style="color: #dc143c;"></i>
+                    <img src="../assets/images/Electronics3.jpeg" alt="item" height="40px" width="40px">
+                    <span class="title">H1 Gamepad</span>
+                </span>
+                <span class="price">550$</span>
+                <span class="quantity">
+                    <input type="number" min="1" max="100" value="1">
+                </span>
+                <span class="subtotal">650$</span>
+            </div>
+
+            <div>
+                <button href="../pages/home.html" id="return_to_shop_btn">
+                    Return To Shop
+                </button>
+            </div>
+
+            <div class="cart-actions">
+                <span>
+                    <input id="coupon_input" type="text" placeholder="Coupon Code">
+                    <button id="apply_coupon_btn">
+                        Apply Coupon
+                    </button>
+                </span>
+
+                <span id="cart_total">
+                    Cart Total
+                    <div id="checkout">
+                        <div>
+                            Subtotal: <span id="subtotal">$1750</span>
+
+                        </div>
+                        <hr>
+                        <div>
+                            Shipping: <span id="shipping">Free</span>
+
+                        </div>
+                        <hr>
+                        <div>
+                            Total: <span id="total">$1750</span>
+                        </div>
+
+                        <button id="process_to_checkout">
+                            Process To Checkout
+                        </button>
+                    </div>
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <script src="../scripts/navbar.js"></script>
+    <script src="../scripts/cart.js"></script>
+</body>
+
+</html>
