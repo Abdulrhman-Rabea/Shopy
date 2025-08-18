@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist Page</title>
+  <link rel="stylesheet" href="wishlist.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/solid.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/regular.min.css" />
+   
+  
+</head>
+<body>
+
+    <nav>
+       
+        <div class="logo">
+            <img src="images/SiteLogoClear.png" alt="Logo">
+        </div>
+
+  
+        <ul class="navLinks">
+            <li class="hideOnMobile"><a href="#">Home</a></li>
+            <li class="hideOnMobile"><a href="#">Contact</a></li>
+            <li class="hideOnMobile"><a href="#">About</a></li>
+            <li class="hideOnMobile"><a href="#">Sign Up</a></li>
+        </ul>
+
+     
+        <div class="navIcons">
+            <div class="search-box">
+                <input type="text" placeholder="What are you looking for?">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <a href="#"><i class="fa-regular fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-cart-shopping outlined"></i></a>
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <span class="menu-button"><a href="#" onclick="openSideBar()"><i class="fa-solid fa-bars"></i></a></span>
+        </div>
+
+  
+        <ul class="sideBar">
+            <li onclick="closeSideBar()"><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+    </nav>
+    <div class="icons">
+      <a href="#"><i class="fa fa-user"></i></a>
+      <a href="#"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+ 
+  <section class="wishlist">
+  <div class="wishlist-header">
+    <h2>Wishlist </h2>
+    <button id="moveToCart">Move All To Cart</button>
+  </div>
+
+  <div class="wishlist-grid" id="wishlistItems">
+
+  </div>
+</section>
+  
+    <footer>
+        <div>
+            <h2>Exclusive</h2>
+            <ul>
+                <li>subscribe</li>
+                <li>Get 10% of your first order</li>
+                <li>
+                    <input  type="text" placeholder="Enter your email">
+                </li>
+            </ul>
+        </div>
+         <div>
+            <h2>Support</h2>
+            <ul>
+                <li>111 Bijoy sarani, Dhaka,<br>  DH 1515, Bangladesh.</li>
+                <li>exclusive@gmail.com</li>
+                <li>
+                    +88015-88888-9999
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h2>Account</h2>
+            <ul>
+                <li>My account</li>
+                <li>Login / Register</li>
+                <li> Cart </li>
+                <li> Wish list</li>
+                <li> Shop </li>
+            </ul>
+        </div>
+        <div>
+            <h2> Quick Link</h2>
+            <ul>
+                <li>Privacy Policy</li>
+                <li>Terms Of Us</li>
+                <li> FAQ </li>
+                <li>Contact</li>
+            </ul>
+        </div>
+         <div>
+            <h2>Download App</h2>
+            <ul>
+                <li>Save $3 with App New User Only</li>
+                <li class="apps"> 
+                    <img src="./images/Qr Code.jpg" alt="">
+                    <span>
+                        <a href=""> <img src="./images/GooglePlay.jpg" alt=""> </a>
+                       <a href=""><img src="images/download-appstore.png" alt=""></a> 
+                    </span>
+                </li>
+                 <div class="social-icons">
+                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+  </div>
+            </ul>
+        </div>
+       
+    </footer>
+
+
+  <script src="wishlist.js"></script>
+</body>
+</html>
