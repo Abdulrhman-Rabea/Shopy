@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up - Shopy</title>
+        <link rel="stylesheet" href="../styles/login.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+
+    <body>
+        <!-- Header Navigation -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <h1 class="logo-text">Shopy</h1>
+                </div>
+
+                <nav class="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html"
+                                class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#"
+                                class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="#"
+                                class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="Login.html"
+                                class="nav-link">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Sign Up Section -->
+        <main class="login-main">
+            <div class="login-container">
+                <!-- Left Side - Image -->
+                <div class="login-image-section">
+                    <div class="image-container">
+                        <img src="../assets/login photos/logo1.svg"
+                            alt="Sign Up" class="login-image">
+                    </div>
+                    <div class="image-overlay">
+                        <h2 class="welcome-text">Join Shopy!</h2>
+                        <p class="welcome-subtitle">Create your account and
+                            start your shopping journey</p>
+                    </div>
+                </div>
+
+                <!-- Right Side - Sign Up Form -->
+                <div class="login-form-section">
+                    <div class="form-container">
+                        <div class="form-header">
+                            <h2 class="form-title">Create Account</h2>
+                            <p class="form-subtitle">Fill in your details to
+                                create your account</p>
+                        </div>
+
+                        <form id="registerForm" class="login-form">
+                            <!-- Full Name Input -->
+                            <div class="input-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="fullName"
+                                        class="form-input"
+                                        placeholder="Full Name"
+                                        autocomplete="name" required>
+                                </div>
+                            </div>
+
+                            <!-- Email Input -->
+                            <div class="input-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input type="email" id="email"
+                                        class="form-input"
+                                        placeholder="Email Address"
+                                        autocomplete="email" required>
+                                </div>
+                            </div>
+
+                            <!-- Password Input -->
+                            <div class="input-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-lock input-icon"></i>
+                                    <input type="password" id="password"
+                                        class="form-input"
+                                        placeholder="Password"
+                                        autocomplete="new-password" required>
+                                    <button type="button" id="password-toggle"
+                                        class="password-toggle"
+                                        aria-label="Toggle password visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password Input -->
+                            <div class="input-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-lock input-icon"></i>
+                                    <input type="password" id="confirmPassword"
+                                        class="form-input"
+                                        placeholder="Confirm Password"
+                                        autocomplete="new-password" required>
+                                    <button type="button"
+                                        id="confirm-password-toggle"
+                                        class="password-toggle"
+                                        aria-label="Toggle password visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Terms Checkbox -->
+                            <div class="input-group">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="terms" required>
+                                    <label for="terms" class="checkbox-label">
+                                        I agree to the <a href="#"
+                                            class="terms-link">Terms of
+                                            Service</a> and
+                                        <a href="#" class="terms-link">Privacy
+                                            Policy</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="register-button"
+                                class="login-button">
+                                <span id="button-text">Create Account</span>
+                                <div id="button-spinner" class="spinner">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+
+                            <!-- Messages -->
+                            <div id="error-message" class="error-message"></div>
+                            <div id="success-message" class="success-message">
+                            </div>
+                        </form>
+
+                        <!-- Divider -->
+                        <div class="divider">
+                            <span class="divider-text">or</span>
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="signup-link">
+                            <p>Already have an account? <a href="Login.html"
+                                    class="signup-text">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3 class="footer-title">Shopy</h3>
+                    <p class="footer-description">Your one-stop destination for
+                        all your shopping needs</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-list">
+                        <li><a href="#" class="footer-link">Help Center</a></li>
+                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a>
+                        </li>
+                        <li><a href="#" class="footer-link">Terms of Service</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Account</h4>
+                    <ul class="footer-list">
+                        <li><a href="#" class="footer-link">My Account</a></li>
+                        <li><a href="#" class="footer-link">Order History</a>
+                        </li>
+                        <li><a href="#" class="footer-link">Wishlist</a></li>
+                        <li><a href="#" class="footer-link">Settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Newsletter</h4>
+                    <p class="newsletter-text">Subscribe to get special offers
+                        and updates</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email"
+                            class="newsletter-input">
+                        <button type="submit" class="newsletter-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shopy. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script src="../scripts/register.js" type="module"></script>
+    </body>
+
+</html>
