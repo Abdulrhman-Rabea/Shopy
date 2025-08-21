@@ -506,23 +506,8 @@ window.toggleWishlist = toggleWishlist;
 window.addToCart = addToCart;
 window.buyNow = buyNow;
 window.logout = logout;
-window.openSideBar = openSideBar;
-window.closeSideBar = closeSideBar;
 
-// Sidebar functions
-function openSideBar() {
-    const sidebar = document.querySelector('.sideBar');
-    if (sidebar) {
-        sidebar.style.right = '0';
-    }
-}
 
-function closeSideBar() {
-    const sidebar = document.querySelector('.sideBar');
-    if (sidebar) {
-        sidebar.style.right = '-250px';
-    }
-}
 
 // Logout function
 async function logout() {

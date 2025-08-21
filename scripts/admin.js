@@ -1,6 +1,5 @@
-// ==============================
+
 // Firebase Config & Initialization (no realtime)
-// ==============================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
@@ -55,11 +54,10 @@ const productDescriptionInput = document.getElementById("product-description");
 const productRatingRateInput = document.getElementById("product-rating-rate");
 const productSaveButton = document.getElementById("product-save-button");
 
-// ==============================
+// 
 // State
-// ==============================
 let loggedUser = null; // { id, email, role }
-let allOrders = []; // cached list of all orders
+let allOrders = []; // global variable for all users 
 let activeStatusFilter = "all";
 let activeSearchTerm = "";
 // Products state
@@ -214,7 +212,6 @@ function renderOrders() {
         tdCustomer.innerHTML = `
             <div class="customer-cell">
                 <div class="customer-name">${customerName}</div>
-                <div class="customer-email">${customerEmail}</div>
             </div>
         `;
 
@@ -328,9 +325,7 @@ function closeOrderDetail() {
     detail.setAttribute("aria-hidden", "true");
 }
 
-// ==============================
 // Data Access
-// ==============================
 async function loadAdminName(userId, fallbackEmail) {
     try {
         const userRef = doc(db, "users", userId);
@@ -375,8 +370,7 @@ async function updateOrderStatus(orderId, newStatus) {
     }
 }
 
-// ==============================
-// Products: Data Access
+// 
 // ==============================
 async function fetchAllProducts() {
     const colRef = collection(db, "products");
@@ -434,9 +428,7 @@ async function deleteProductById(productId) {
     await deleteDoc(ref);
 }
 
-// ==============================
 // Products: UI
-// ==============================
 function openProductModal(product) {
     editingProductId = product?.id || null;
     if (productFormTitleEl) productFormTitleEl.textContent = editingProductId ? "Edit Product" : "Add Product";
