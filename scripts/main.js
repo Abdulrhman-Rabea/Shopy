@@ -149,13 +149,14 @@ function createStarRating(rating) {
 // Create product card HTML
 function createProductCard(product) {
     const starsHTML = createStarRating(product.rating?.rate || 0);
+    const isWishlisted = isInWishlist(product.id);
 
     return `
         <div class="product-card" data-product-id="${product.id}">
             <div class="product-image-container">
                 <img src="${product.image}" alt="${product.title}" class="product-image">
-                <button class="product-wishlist-button" onclick="toggleWishlist('${product.id}')">
-                    <i class="fas fa-heart ${isInWishlist(product.id) ? 'active' : ''}"></i>
+                <button class="product-wishlist-button ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist('${product.id}')">
+                    <i class="fas fa-heart"></i>
                 </button>
                 <button class="product-cart-button" onclick="addToCart('${product.id}')">
                     <i class="fas fa-shopping-cart"></i>
@@ -239,7 +240,7 @@ async function toggleWishlist(productId) {
     localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
 
     // Update UI
-    const wishlistBtn = document.querySelector(`[onclick="toggleWishlist('${productId}')"] i`);
+    const wishlistBtn = document.querySelector(`[onclick="toggleWishlist('${productId}')"]`);
     if (wishlistBtn) {
         wishlistBtn.classList.toggle('active');
     }
@@ -289,9 +290,26 @@ async function buyNow(productId) {
     if (!product) return;
 
     try {
+        // Get user profile information
+        let customerInfo = {
+            name: currentUser.displayName || 'Customer',
+            email: currentUser.email,
+            uid: currentUser.uid
+        };
+
+        // Try to get additional user info from localStorage
+        const storedUser = localStorage.getItem('loggedUser');
+        if (storedUser) {
+            const userData = JSON.parse(storedUser);
+            if (userData.name) {
+                customerInfo.name = userData.name;
+            }
+        }
+
         const order = {
             userId: currentUser.uid,
             userEmail: currentUser.email,
+            customerInfo: customerInfo,
             items: [{
                 productId: productId,
                 title: product.title,
@@ -488,6 +506,23 @@ window.toggleWishlist = toggleWishlist;
 window.addToCart = addToCart;
 window.buyNow = buyNow;
 window.logout = logout;
+window.openSideBar = openSideBar;
+window.closeSideBar = closeSideBar;
+
+// Sidebar functions
+function openSideBar() {
+    const sidebar = document.querySelector('.sideBar');
+    if (sidebar) {
+        sidebar.style.right = '0';
+    }
+}
+
+function closeSideBar() {
+    const sidebar = document.querySelector('.sideBar');
+    if (sidebar) {
+        sidebar.style.right = '-250px';
+    }
+}
 
 // Logout function
 async function logout() {

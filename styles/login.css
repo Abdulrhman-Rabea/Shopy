@@ -6,7 +6,7 @@
 }
 
 body {
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	line-height: 1.6;
 	color: #333;
 	background-color: #f8f9fa;
@@ -247,13 +247,13 @@ body {
 	transition: all 0.3s ease;
 }
 
-.checkbox-input:checked + .checkbox-custom {
+.checkbox-input:checked+.checkbox-custom {
 	background-color: #007bff;
 	border-color: #007bff;
 }
 
-.checkbox-input:checked + .checkbox-custom::after {
-	content: "✓";
+.checkbox-input:checked+.checkbox-custom::after {
+	content: '✓';
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -346,7 +346,7 @@ body {
 }
 
 .divider::before {
-	content: "";
+	content: '';
 	position: absolute;
 	top: 50%;
 	left: 0;
@@ -399,8 +399,8 @@ body {
 }
 
 .facebook-button:hover {
-	border-color: #4267b2;
-	color: #4267b2;
+	border-color: #4267B2;
+	color: #4267B2;
 }
 
 /* Sign Up Link */

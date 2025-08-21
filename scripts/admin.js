@@ -113,12 +113,19 @@ function setActiveTab(status) {
 }
 
 function computeStats(orders) {
-    const counts = { pending: 0, accepted: 0, declined: 0 };
+    const counts = {
+        pending: 0,
+        accepted: 0,
+        declined: 0
+    };
+
     for (const order of orders) {
+        // Count order statuses
         if (order.status === "pending") counts.pending += 1;
         else if (order.status === "accepted") counts.accepted += 1;
         else if (order.status === "declined") counts.declined += 1;
     }
+
     return counts;
 }
 
@@ -186,7 +193,7 @@ function renderOrders() {
     if (list.length === 0) {
         const tr = document.createElement("tr");
         const td = document.createElement("td");
-        td.colSpan = 5;
+        td.colSpan = 6; // Updated to match new column count (6 columns)
         td.textContent = "No orders found.";
         tr.appendChild(td);
         ordersBodyEl.appendChild(tr);
@@ -201,23 +208,40 @@ function renderOrders() {
         tdOrder.textContent = order.orderNumber || order.id || "-";
 
         const tdCustomer = document.createElement("td");
-        const name = order.customerInfo?.name || "-";
-        const email = order.customerInfo?.email || "-";
-        tdCustomer.innerHTML = `<div class="customer-cell"><div class="customer-name">${name}</div><div class="customer-email">${email}</div></div>`;
+        // Simplified customer information display
+        const customerName = order.customerInfo?.name || order.userEmail || "Customer";
+        const customerEmail = order.customerInfo?.email || order.userEmail || "-";
+        tdCustomer.innerHTML = `
+            <div class="customer-cell">
+                <div class="customer-name">${customerName}</div>
+                <div class="customer-email">${customerEmail}</div>
+            </div>
+        `;
+
+        const tdItems = document.createElement("td");
+        const itemCount = order.items ? order.items.length : 0;
+        const itemNames = order.items ? order.items.map(item => item.title || 'Item').slice(0, 2).join(', ') : '';
+        tdItems.innerHTML = `
+            <div class="items-cell">
+                <div class="items-count">${itemCount} item(s)</div>
+                <div class="items-preview">${itemNames}${itemCount > 2 ? '...' : ''}</div>
+            </div>
+        `;
 
         const tdTotal = document.createElement("td");
         tdTotal.textContent = formatCurrency(order.total);
 
-        const tdStatus = document.createElement("td");
-        tdStatus.appendChild(createStatusBadge(order.status));
+        const tdOrderStatus = document.createElement("td");
+        tdOrderStatus.appendChild(createStatusBadge(order.status));
 
         const tdActions = document.createElement("td");
         tdActions.appendChild(createActionButtons(order));
 
         tr.appendChild(tdOrder);
         tr.appendChild(tdCustomer);
+        tr.appendChild(tdItems);
         tr.appendChild(tdTotal);
-        tr.appendChild(tdStatus);
+        tr.appendChild(tdOrderStatus);
         tr.appendChild(tdActions);
 
         ordersBodyEl.appendChild(tr);
@@ -238,24 +262,31 @@ function openOrderDetail(order) {
     const body = document.getElementById("order-detail-body");
     if (!detail || !body) return;
 
+    // Simplified customer information
+    const customerName = order.customerInfo?.name || order.userEmail || "Customer";
+    const customerEmail = order.customerInfo?.email || order.userEmail || "-";
+
     body.innerHTML = `
         <div class="detail-header">
             <h3>Order ${order.orderNumber || order.id}</h3>
             <div class="detail-status">${order.status}</div>
         </div>
+        
         <div class="detail-section">
-            <h4>Customer</h4>
-            <div><strong>Name:</strong> ${order.customerInfo?.name || "-"}</div>
-            <div><strong>Email:</strong> ${order.customerInfo?.email || "-"}</div>
-            <div><strong>Phone:</strong> ${order.customerInfo?.phone || "-"}</div>
-            <div><strong>Address:</strong> ${order.customerInfo?.address || "-"}</div>
+            <h4>Customer Information</h4>
+            <div class="customer-details">
+                <div><strong>Name:</strong> ${customerName}</div>
+                <div><strong>Email:</strong> ${customerEmail}</div>
+                <div><strong>Order Date:</strong> ${new Date(order.createdAt).toLocaleDateString()}</div>
+            </div>
         </div>
+        
         <div class="detail-section">
-            <h4>Items</h4>
+            <h4>Order Items</h4>
             <div class="items-list">
                 ${(order.items || []).map(item => `
                     <div class="item-row">
-                        <img src="${item.image || ""}" alt="${item.title || ""}">
+                        <img src="${item.image || ""}" alt="${item.title || ""}" class="item-image">
                         <div class="item-info">
                             <div class="item-title">${item.title || item.productId || "Item"}</div>
                             <div class="item-meta">Qty: ${item.quantity || 1} • ${formatCurrency(item.price || 0)}</div>
@@ -264,7 +295,25 @@ function openOrderDetail(order) {
                     </div>
                 `).join("")}
             </div>
-            <div class="detail-total"><strong>Total:</strong> ${formatCurrency(order.total)}</div>
+            <div class="detail-total">
+                <strong>Total Order Value:</strong> ${formatCurrency(order.total)}
+            </div>
+        </div>
+        
+        <div class="detail-section">
+            <h4>Order Actions</h4>
+            <div class="order-actions">
+                ${order.status === 'pending' ? `
+                    <button class="action-btn accept-btn" onclick="updateOrderStatus('${order.id}', 'accepted')">
+                        <i class="fa-solid fa-check"></i> Accept Order
+                    </button>
+                    <button class="action-btn decline-btn" onclick="updateOrderStatus('${order.id}', 'declined')">
+                        <i class="fa-solid fa-xmark"></i> Decline Order
+                    </button>
+                ` : `
+                    <div class="status-info">Order is ${order.status}</div>
+                `}
+            </div>
         </div>
     `;
 
@@ -308,12 +357,16 @@ async function fetchAllOrders() {
 async function updateOrderStatus(orderId, newStatus) {
     try {
         const ref = doc(db, "orders", orderId);
+
+        // Update only order status
         await updateDoc(ref, { status: newStatus });
+
         // Reflect locally
         const idx = allOrders.findIndex(o => o.id === orderId);
         if (idx !== -1) {
             allOrders[idx].status = newStatus;
         }
+
         renderOrders();
         showToast(`Order ${newStatus}.`, "success");
     } catch (e) {
