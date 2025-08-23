@@ -597,12 +597,20 @@ hr {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+	.logo {
+		margin: 0 50%;
+	}
+	nav {
+		flex-wrap: wrap;
+		width: 90%;
+	}
 	.app-container {
 		padding: 0 15px;
 	}
 
 	.header-container {
 		flex-direction: column;
+		flex-wrap: wrap;
 		gap: 15px;
 	}
 
