@@ -280,24 +280,81 @@ async function addToCart(productId) {
 }
 
 // Buy now
+// async function buyNow(productId) {
+//     if (!currentUser) {
+//         showLoginPopup();
+//         return;
+//     }
+
+//     const product = allProducts.find(p => p.id === productId);
+//     if (!product) return;
+
+//     try {
+//         // Get user profile information
+//         let customerInfo = {
+//             name: currentUser.displayName || 'Customer',
+//             email: currentUser.email,
+//             uid: currentUser.uid
+//         };
+
+//         // Try to get additional user info from localStorage
+//         const storedUser = localStorage.getItem('loggedUser');
+//         if (storedUser) {
+//             const userData = JSON.parse(storedUser);
+//             if (userData.name) {
+//                 customerInfo.name = userData.name;
+//             }
+//         }
+
+//         const order = {
+//             userId: currentUser.uid,
+//             userEmail: currentUser.email,
+//             customerInfo: customerInfo,
+//             items: [{
+//                 productId: productId,
+//                 title: product.title,
+//                 price: product.price,
+//                 image: product.image,
+//                 quantity: 1
+//             }],
+//             total: product.price,
+//             status: 'pending',
+//             createdAt: new Date().toISOString(),
+//             orderNumber: generateOrderNumber()
+//         };
+
+//         const ordersCollection = collection(db, 'orders');
+//         await addDoc(ordersCollection, order);
+
+//         showMessage('Order placed successfully!', 'success');
+//         setTimeout(() => {
+//             window.location.href = 'pages/cart.html';
+//         }, 1000);
+
+//     } catch (error) {
+//         console.error('Error placing order:', error);
+//         showMessage('Failed to place order. Please try again.', 'error');
+//     }
+// }
 async function buyNow(productId) {
     if (!currentUser) {
         showLoginPopup();
         return;
     }
 
+    // نجيب المنتج اللي المستخدم عايز يشتريه
     const product = allProducts.find(p => p.id === productId);
     if (!product) return;
 
     try {
-        // Get user profile information
+        // بيانات المستخدم
         let customerInfo = {
             name: currentUser.displayName || 'Customer',
             email: currentUser.email,
             uid: currentUser.uid
         };
 
-        // Try to get additional user info from localStorage
+        // لو فيه بيانات إضافية متخزنة في localStorage
         const storedUser = localStorage.getItem('loggedUser');
         if (storedUser) {
             const userData = JSON.parse(storedUser);
@@ -306,6 +363,7 @@ async function buyNow(productId) {
             }
         }
 
+        // تجهيز الطلب
         const order = {
             userId: currentUser.uid,
             userEmail: currentUser.email,
@@ -323,19 +381,36 @@ async function buyNow(productId) {
             orderNumber: generateOrderNumber()
         };
 
+        // ١- إضافة الطلب في orders
         const ordersCollection = collection(db, 'orders');
         await addDoc(ordersCollection, order);
 
+        // ٢- كمان نزود نسخة في cart (عشان cart.html يقرأها)
+        const cartCollection = collection(db, 'cart');
+        await addDoc(cartCollection, {
+            userId: currentUser.uid,
+            productId: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+            createdAt: new Date().toISOString()
+        });
+
+        // رسالة نجاح
         showMessage('Order placed successfully!', 'success');
+
+        // تحويل لصفحة cart
         setTimeout(() => {
             window.location.href = 'pages/cart.html';
-        }, 1500);
+        }, 1000);
 
     } catch (error) {
         console.error('Error placing order:', error);
         showMessage('Failed to place order. Please try again.', 'error');
     }
 }
+
 
 // Generate order number
 function generateOrderNumber() {
