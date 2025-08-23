@@ -1,20 +1,8 @@
 
-// Firebase Config & Initialization (no realtime)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import {
-    getFirestore,
-    collection,
-    getDocs,
-    doc,
-    getDoc,
-    updateDoc,
-    addDoc,
-    setDoc,
-    deleteDoc
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, getDoc, updateDoc, addDoc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// IMPORTANT: Using the same config used in login.js to avoid mismatched projects
 const firebaseConfig = {
     apiKey: "AIzaSyDcP9iMTNphp4V2DNu_jNeoPdn-6wycEac",
     authDomain: "e-commerce-iti-project.firebaseapp.com",
@@ -28,9 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ==============================
 // DOM Elements
-// ==============================
 const adminNameEl = document.getElementById("admin-name");
 const logoutButton = document.getElementById("logout-button");
 const ordersBodyEl = document.getElementById("orders-body");
@@ -54,7 +40,6 @@ const productDescriptionInput = document.getElementById("product-description");
 const productRatingRateInput = document.getElementById("product-rating-rate");
 const productSaveButton = document.getElementById("product-save-button");
 
-// 
 // State
 let loggedUser = null; // { id, email, role }
 let allOrders = []; // global variable for all users 
@@ -65,9 +50,7 @@ let allProducts = [];
 let activeProductSearchTerm = "";
 let editingProductId = null; // if null -> create, else update specific id
 
-// ==============================
 // Utils
-// ==============================
 function showToast(message, type = "success") {
     if (!toastEl) return;
     toastEl.textContent = message;
@@ -87,14 +70,6 @@ function formatCurrency(amount) {
     }
 }
 
-function parseLoggedUser() {
-    try {
-        const raw = localStorage.getItem("loggedUser");
-        return raw ? JSON.parse(raw) : null;
-    } catch (_e) {
-        return null;
-    }
-}
 
 function waitForAuth() {
     return new Promise(resolve => {
@@ -338,14 +313,15 @@ async function loadAdminName(userId, fallbackEmail) {
 }
 
 async function fetchAllOrders() {
-    // Single fetch (no realtime). If dataset is large, consider pagination later.
     const colRef = collection(db, "orders");
     const snap = await getDocs(colRef);
     const orders = [];
+    console.log("from fetch data" + snap)
     snap.forEach(docSnap => {
         const data = docSnap.data();
         orders.push({ id: docSnap.id, ...data });
-    });
+    }
+    );
     return orders;
 }
 
@@ -531,9 +507,7 @@ function renderProducts() {
     }
 }
 
-// ==============================
 // Events & Init
-// ==============================
 function setupEventHandlers() {
     // Filters
     filterTabs.forEach(tab => {
@@ -647,7 +621,11 @@ async function init() {
     }
 
     // Backward compatibility with previous local guard
-    loggedUser = { id: authUser.uid, email: authUser.email || "", role };
+    loggedUser = {
+        id: authUser.uid,
+        email: authUser.email || "",
+        role
+    };
 
     await loadAdminName(loggedUser.id, loggedUser.email);
 
